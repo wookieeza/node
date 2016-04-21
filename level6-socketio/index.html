@@ -19,13 +19,13 @@
   });
   socket.on('messages', function(data){
      //alert(data);
-    $('#messages').html(data+"\n");
+    $('#messages').append("<p>"+data+"</p>");
   });
 
   socket.on('joins', function(data){
 
     //alert(data +" joined the chat");
-    $('#chatters').html(data +"joined the chat \n");
+    $('#chatters').append("<p>"+data +" joined the chat </p>");
   });
 
 </script>
@@ -45,12 +45,12 @@
 </body>
 
 
-/*
-var insertQuestion = function(question){
-var newQuestion = document.createElement('li');
-newQuestion.innerHTML = question;
+<!--/*-->
+<!--var insertQuestion = function(question){-->
+<!--var newQuestion = document.createElement('li');-->
+<!--newQuestion.innerHTML = question;-->
 
-var questions = document.getElementsByTagName('ul')[0];
-return questions.appendChild(newQuestion);
-}
-*/
+<!--var questions = document.getElementsByTagName('ul')[0];-->
+<!--return questions.appendChild(newQuestion);-->
+<!--}-->
+<!--*/-->
