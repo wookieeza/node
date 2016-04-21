@@ -1,0 +1,46 @@
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+   var socket = io.connect('http://localhost:8080');
+
+   $(document).ready(function() {
+       $("#btnSubmit").click(function(){
+           var message = prompt("say what?");
+           socket.emit('saying', message);
+       });
+   });
+
+   socket.on('connect', function(){
+       $('#status').html('connected');
+       var name = prompt("what is your nickname?");
+       socket.emit('joins', name);
+   });
+   socket.on('saying', function(data){
+       //alert(data);
+       $('#messages').append("<p>"+data+"</p>");
+   });
+
+
+
+   socket.on('joins', function(data){
+
+       //alert(data +" joined the chat");
+       $('#chatters').append("<p>"+data +" joined the chat </p>");
+   });
+
+
+
+</script>
+<body>
+<div id="status" class="">
+
+</div>
+<div id="chatters">
+
+</div>
+<h1>messages</h1>
+<div id="messages" >
+
+</div>
+<input type="button"  id="btnSubmit" value="speak">
+</body>
