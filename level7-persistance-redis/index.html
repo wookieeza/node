@@ -20,13 +20,21 @@
        $('#messages').append("<p>"+data+"</p>");
    });
 
-
+   socket.on('add chatter', function(data){
+       var chatter = $('<li>'+name+'</li>').data('name',data);
+       //alert(data +" joined the chat");
+       $('#redis-chatters').append(chatter);
+   });
 
    socket.on('joins', function(data){
 
        //alert(data +" joined the chat");
        $('#chatters').append("<p>"+data +" joined the chat </p>");
    });
+
+    socket.on("remove chatter",function(name){
+      $("#redis-chatters li[data-name="+name+"]").remove();
+    });
 
 
 
@@ -38,6 +46,11 @@
 <div id="chatters">
 
 </div>
+
+<div id="redis-chatters">
+
+</div>
+
 <h1>messages</h1>
 <div id="messages" >
 
